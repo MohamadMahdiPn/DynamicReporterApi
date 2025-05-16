@@ -15,8 +15,8 @@ public class CustomReport
     public string SqlQuery { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-   
-    public List<ReportParameter> Parameters { get; set; } = new();
+    public bool IsStoredProcedure { get; set; }
+    public virtual List<ReportParameter> Parameters { get; set; } = new();
 
     public bool IsSafeQuery(string sql)
     {
@@ -35,7 +35,7 @@ public class ReportParameter
     public int Id { get; set; }
 
     public int CustomReportId { get; set; }
-    public CustomReport CustomReport { get; set; }
+    public virtual CustomReport CustomReport { get; set; }
 
     [Required]
     public string Name { get; set; } // e.g., "@StartDate"

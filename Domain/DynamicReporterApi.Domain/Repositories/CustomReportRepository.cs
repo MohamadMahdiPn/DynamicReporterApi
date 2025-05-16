@@ -19,10 +19,7 @@ public class CustomReportRepository: ICustomReportRepository
     }
     #endregion
 
-    public async Task<CustomReport> GetByIdAsync(int id)
-    {
-        return await _context.CustomReports.FindAsync(id);
-    }
+    public async Task<CustomReport> GetByIdAsync(int id) => await _context.CustomReports.FindAsync(id);
     public async Task<IEnumerable<CustomReport>> GetAllAsync()
     {
         return await _context.CustomReports.ToListAsync();
@@ -79,7 +76,7 @@ public class CustomReportRepository: ICustomReportRepository
         {
             "int" => int.TryParse(value, out var i) ? i : 0,
             "datetime" => DateTime.TryParse(value, out var dt) ? dt : DateTime.MinValue,
-            "bool" => bool.TryParse(value, out var b) ? b : false,
+            "bool" => bool.TryParse(value, out var b) && b,
             _ => value
         };
     }

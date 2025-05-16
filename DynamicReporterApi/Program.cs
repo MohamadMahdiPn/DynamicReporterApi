@@ -1,11 +1,14 @@
-var builder = WebApplication.CreateBuilder(args);
+using DynamicReporterApi.Domain;
 
+var builder = WebApplication.CreateBuilder(args);
+var configurations = builder.Configuration;
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureDomainServiceRegistration(configurations);
 
 var app = builder.Build();
 
